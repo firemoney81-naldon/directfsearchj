@@ -1,23 +1,807 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://www.k3-insurance-guide.co.kr/#webpage",
+          "url": "https://www.k3-insurance-guide.co.kr/",
+          "name": "K3 보험료 모델별 종합 비교 분석 및 예상 견적 가이드 (2026년 최신)",
+          "description": "기아 K3 모델별 자동차 보험료 평균 비용 및 견적 비교. 연령별(20대, 30대, 40대) 예상 금액, 할인 혜택, 가입 순위 및 디시, 보배드림, 펨코 등 커뮤니티 내돈내산 후기 총망라.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "K3 자동차보험 비교 정보 센터",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://www.k3-insurance-guide.co.kr/logo.png"
+            }
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.k3-insurance-guide.co.kr/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "K3 자동차 보험료 평균 가격은 얼마인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "K3 보험료 평균은 가입 연령과 경력에 따라 상이합니다. 최초 가입하는 20대 초반의 경우 평균 150만원에서 250만원 선이며, 만 30세 이상의 경력 운전자는 연간 평균 50만원에서 80만원 수준으로 저렴하게 가입할 수 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "신규 가입 시 보험료를 가장 효과적으로 줄이는 방법은 무엇인가요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "가장 저렴한곳을 찾기 위해서는 다이렉트 비교 전문 사이트를 활용하는 것이 좋습니다. 티맵 안전운전 할인 특약, 블랙박스 장착, 주행거리 마일리지 특약, 부부 한정 특약 등을 연계 적용하면 최대 40% 이상의 할인 혜택을 받을 수 있습니다."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "K3 GT 모델과 일반 1.6 가솔린 모델의 보험료 차이점은 어떻게 되나요?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "K3 GT 모델은 고성능 1.6 T-GDI 엔진을 탑재하여 차량 가액이 일반 스마트스트림 G1.6 가솔린 모델보다 높고 스포츠 성향으로 분류되어 자차 보험료 및 기본 요율 부담이 높습니다. 동일 조건 비교 시 약 15%에서 25% 가량 비용 차이가 발생할 수 있습니다."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      /* 부드러운 색감 및 다채로운 시각적 계층 구조 적용 */
+      :root {
+        --primary-color: #0f766e; /* 딥 틸 - 신뢰감 */
+        --primary-light: #e0f2f1; /* 페일 틸 - 소프트 배경 */
+        --accent-color: #0d9488; /* 미디엄 틸 - 포인트 및 주요 행동 */
+        --accent-hover: #0f766e;
+        --secondary-color: #f59e0b; /* 부드러운 오렌지/옐로우 - 경고 및 하이라이트 */
+        --text-dark: #1e293b; /* 딥 슬레이트 - 뛰어난 가독성 */
+        --text-muted: #64748b; /* 소프트 그레이 - 설명 텍스트 */
+        --bg-main: #f8fafc; /* 연한 블루그레이 배경 */
+        --card-bg: #ffffff; /* 순백색 카드 배경 */
+        --border-color: #e2e8f0; /* 투명도 낮은 경계선 */
+      }
+
+      * {
+        margin: 0; padding: 0; box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        line-height: 1.7;
+        color: var(--text-dark);
+        background-color: var(--bg-main);
+        word-break: keep-all;
+      }
+
+      a {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+      a:hover, a:focus {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, #115e59 100%);
+        color: #ffffff;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      }
+      header h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+        letter-spacing: -0.5px;
+      }
+      header p {
+        font-size: 1.1rem;
+        color: var(--primary-light);
+        max-width: 700px;
+        margin: 0 auto;
+        font-weight: 300;
+      }
+
+      nav {
+        background-color: #ffffff;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      nav ul li a {
+        color: var(--text-dark);
+        font-size: 0.95rem;
+        font-weight: 700;
+        padding: 8px 16px;
+        border-radius: 30px;
+        transition: all 0.2s ease;
+      }
+      nav ul li a:hover {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        text-decoration: none;
+      }
+
+      main {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 0 20px;
+      }
+
+      section {
+        background: var(--card-bg);
+        border-radius: 16px;
+        padding: 35px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        border: 1px solid var(--border-color);
+      }
+
+      h2 {
+        color: var(--primary-color);
+        margin-bottom: 25px;
+        font-size: 1.7rem;
+        font-weight: 800;
+        border-left: 6px solid var(--accent-color);
+        padding-left: 15px;
+        letter-spacing: -0.5px;
+      }
+
+      h3 {
+        color: var(--text-dark);
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      p {
+        font-size: 1.05rem;
+        color: #334155;
+        margin-bottom: 20px;
+        text-align: justify;
+      }
+
+      strong {
+        color: var(--primary-color);
+        font-weight: 700;
+      }
+
+      /* 테이블 스타일 현대화 */
+      .table-container {
+        overflow-x: auto;
+        margin: 25px 0;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.95rem;
+      }
+      th {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        padding: 14px 18px;
+        font-weight: 700;
+        border-bottom: 2px solid var(--border-color);
+      }
+      td {
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-dark);
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover {
+        background-color: #f8fafc;
+      }
+
+      /* 체류시간 증대를 위한 다채로운 입력 폼 디자인 */
+      .calculator-box {
+        background: linear-gradient(135deg, #f0fdfa 0%, #ccfbf1 100%);
+        border: 2px solid #99f6e4;
+        border-radius: 16px;
+        padding: 30px;
+        margin: 30px 0;
+      }
+      .calculator-box h3 {
+        color: var(--primary-color);
+        margin-top: 0;
+        margin-bottom: 20px;
+        font-size: 1.4rem;
+        text-align: center;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-bottom: 25px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+      }
+      .form-group label {
+        font-weight: 700;
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+      }
+      .form-group select, .form-group input {
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+        background-color: #ffffff;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+      .form-group select:focus, .form-group input:focus {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+      }
+      .checkbox-group {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+      .checkbox-item {
+        display: flex;
+        align-items: center;
+        background-color: #ffffff;
+        padding: 10px 15px;
+        border-radius: 8px;
+        border: 1px solid #cbd5e1;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .checkbox-item:hover {
+        border-color: var(--accent-color);
+        background-color: #f0fdfa;
+      }
+      .checkbox-item input {
+        margin-right: 10px;
+        width: 16px;
+        height: 16px;
+        accent-color: var(--accent-color);
+      }
+      .checkbox-item span {
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+      .calc-btn {
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        background-color: var(--accent-color);
+        color: #ffffff;
+        text-align: center;
+        padding: 15px;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        box-shadow: 0 4px 10px rgba(13, 148, 136, 0.2);
+      }
+      .calc-btn:hover {
+        background-color: var(--accent-hover);
+      }
+
+      /* 모의 계산 결과 출력 창 */
+      .result-container {
+        margin-top: 25px;
+        padding: 20px;
+        border-radius: 12px;
+        background-color: #ffffff;
+        border: 1px dashed var(--accent-color);
+        display: none;
+      }
+      .result-title {
+        font-weight: 700;
+        color: var(--primary-color);
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      .result-val {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--accent-color);
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      .result-details {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        border-top: 1px solid var(--border-color);
+        padding-top: 12px;
+      }
+
+      /* 태그 클라우드 */
+      .keyword-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 15px;
+      }
+      .keyword-cloud span {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      /* 오프닝 안내 문구 박스 */
+      .info-callout {
+        background-color: #fef3c7;
+        border-left: 5px solid var(--secondary-color);
+        padding: 20px;
+        border-radius: 0 12px 12px 0;
+        margin-bottom: 25px;
+      }
+      .info-callout p {
+        margin-bottom: 0;
+        color: #78350f;
+        font-size: 0.95rem;
+      }
+
+      /* 리스트 스타일 커스텀 (불릿기호 제거 및 깨끗하게 표현) */
+      .clean-list {
+        list-style: none;
+        margin-left: 0;
+        margin-bottom: 20px;
+      }
+      .clean-list li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 10px;
+        font-size: 1.05rem;
+      }
+      .clean-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 10px;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--accent-color);
+      }
+
+      /* 외부 링크 버튼 그룹 */
+      .external-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .ext-btn {
+        background-color: #f1f5f9;
+        color: var(--text-dark);
+        border: 1px solid #cbd5e1;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      .ext-btn:hover {
+        background-color: var(--primary-light);
+        color: var(--primary-color);
+        text-decoration: none;
+        border-color: var(--primary-color);
+      }
+
+      footer {
+        background-color: var(--text-dark);
+        color: #94a3b8;
+        padding: 40px 20px;
+        text-align: center;
+        font-size: 0.85rem;
+        border-top: 4px solid var(--accent-color);
+      }
+      footer a {
+        color: #e2e8f0;
+      }
+
+      /* 반응형 */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 1.8rem;
+        }
+        nav ul {
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
+        }
+        section {
+          padding: 20px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>K3 보험료 맞춤형 가이드</h1>
+        <p>2026년 기준 기아 K3 모델별 자동차 보험료 평균 가격 분석부터 나이별 예상 견적, 커뮤니티 리얼 후기, 효율적인 할인 혜택 설계까지 정확하고 깊이 있는 정보를 제공합니다.</p>
+    </header>
+
+    <nav aria-label="메인 내비게이션">
+        <ul>
+            <li><a href="#intro-section">K3 보험료 개요</a></li>
+            <li><a href="#calc-section">실시간 모의 견적기</a></li>
+            <li><a href="#age-section">연령별 예상 비용</a></li>
+            <li><a href="#model-section">모델별 보험료 분석</a></li>
+            <li><a href="#discount-section">할인 특약 공략</a></li>
+            <li><a href="#community-section">커뮤니티 내돈내산 후기</a></li>
+            <li><a href="#faq-section">자주 묻는 질문</a></li>
+        </ul>
     </nav>
+
     <main>
-      <h1>Home page</h1>
+        <!-- 오프닝 안내 문구 -->
+        <div class="info-callout">
+            <p>본 가이드는 국토교통부, 보험다모아, 금융감독원 등의 공인 데이터를 참고하여 작성되었습니다. 개인의 실제 사고 이력, 법규 위반 경력, 운전자 범위 세부 지정 등에 따라 상세 보험료는 차이가 발생할 수 있으므로, 정확한 비용 확인을 위해서는 직접 조회를 병행하는 것이 가장 정밀합니다.</p>
+        </div>
+
+        <!-- 소개 섹션 -->
+        <section id="intro-section">
+            <h2>K3 자동차 보험료 핵심 개요</h2>
+            <p>기아의 대표적인 준중형 세단인 K3는 세련된 디자인과 훌륭한 경제성으로 젊은 층뿐만 아니라 출퇴근용 첫차로 많은 사랑을 받고 있습니다. 하지만 첫차로 선택하는 빈도가 높은 만큼 <strong>K3 보험료</strong>에 대한 관심과 의문은 항상 꼬리를 뭅니다. 차량을 처음 인도받는 초보 운전자나 신규 가입 운전자들의 경우 과연 매년 나가는 고정 지출인 보험료를 어떻게 하면 현명하게 낮출 수 있을지 깊이 고민하게 됩니다.</p>
+            <p>자동차보험의 요율은 기본적으로 운전자의 연령, 사고 이력, 경력, 그리고 차량 종류에 의해 결정됩니다. K3는 오랜 기간 동안 수많은 연식 변경과 세대교체를 거쳐왔습니다. 2012년 최초 출시된 K3 1세대 모델부터 시작해 대대적인 완성도를 끌어올린 2018년형 올 뉴 K3 스마트스트림 G1.6 모델, 그리고 스타일리시한 외관을 강조하는 K3 GT 5도어 스포츠 모델까지 라인업이 매우 방대합니다. 이 중 어떤 모델을 타느냐에 따라 차량 가액과 등급이 다르게 적용되어 연간 비용 차이점이 뚜렷하게 도출됩니다.</p>
+            <p>보험사들이 산정하는 등급 요율표 상에서 고성능을 지향하는 K3 쿱 모델이나 K3 GT 1.6 T-GDI 사양의 경우 일반적인 에코 드라이빙 중심의 K3 1.6 가솔린 트렌디 모델보다 자차 부담금 및 기본 손해율이 다소 높게 조정되어 있습니다. 이에 따라 신형 K3 구매를 검토하는 분이나 구형 K3 수동 모델로 가성비를 추구하는 분들 모두 자신의 상세 주행 조건에 맞는 견적을 세밀하게 따져보고 가장 저렴한곳을 찾아 가입 우선 순위를 정해야 합니다.</p>
+        </section>
+
+        <!-- 모의 계산기 (체류 시간 극대화 장치) -->
+        <section id="calc-section">
+            <h2>실시간 내 K3 보험료 모의 계산기</h2>
+            <p>자신의 현재 나이, 연식, 운전 경력, 그리고 가입 예정 조건을 지정해 실시간으로 연간 예상 금액을 시뮬레이션해 보세요. 아래의 간단한 입력란을 채우는 과정은 페이지 내에서 즉각적으로 맞춤 견적 금액을 도출하여 본인의 실질적 예산 수립을 도와줍니다.</p>
+            
+            <div class="calculator-box">
+                <h3>K3 자동차 보험료 예측 시뮬레이션</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="car-model">세부 모델 선택</label>
+                        <select id="car-model">
+                            <option value="1.0">올 뉴 K3 스마트스트림 G1.6 (2018~2021)</option>
+                            <option value="1.15">더 뉴 K3 2세대 페이스리프트 (2021~2024)</option>
+                            <option value="1.3">K3 GT 5도어 터보 모델</option>
+                            <option value="0.9">K3 1세대 가솔린/디젤 (2012~2015)</option>
+                            <option value="0.95">더 뉴 K3 1세대 후기형 (2015~2018)</option>
+                            <option value="1.1">K3 1.6 LPI LPG 전용 모델</option>
+                            <option value="1.25">K3 쿱 1.6 T-GDI 쿠페</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="driver-age">가입자 만 연령</label>
+                        <select id="driver-age">
+                            <option value="2.5">만 21세 이하 (최초 가입)</option>
+                            <option value="1.7">만 24세 이상 만 26세 미만</option>
+                            <option value="1.15">만 26세 이상 만 30세 미만</option>
+                            <option value="0.8">만 30세 이상 만 43세 미만</option>
+                            <option value="0.75">만 43세 이상 (경력자 우대)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">운전 경력 여부</label>
+                        <select id="experience">
+                            <option value="1.3">신규 가입 (경력 없음)</option>
+                            <option value="1.0">1년 이상 3년 미만 경력</option>
+                            <option value="0.85">3년 이상 우수 운전자</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="tmap" value="0.88">
+                        <span>티맵 안전운전 (80점↑)</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="blackbox" value="0.95">
+                        <span>블랙박스 상시 장착</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="mileage" value="0.85">
+                        <span>연간 1만km 이하 주행</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="children" value="0.93">
+                        <span>자녀 할인 특약 적용</span>
+                    </label>
+                </div>
+
+                <button type="button" class="calc-btn" onclick="calculateK3Premium()">예상 연간 보험료 확인하기</button>
+
+                <div id="calc-result" class="result-container">
+                    <div class="result-title">입력하신 맞춤 조건에 따른 연간 예상 K3 보험료</div>
+                    <div class="result-val" id="premium-display">0원</div>
+                    <div class="result-details" id="premium-desc">
+                        본 결과는 통계 데이터를 가공한 모의 수치입니다. 다이렉트 가입 혜택과 특약 조건이 복합 적용되어 있으며, 가입시기 할인율 변동이나 보험 개발원의 손해율 개정에 따라 실 견적과 차이가 날 수 있습니다.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 연령별 보험료 집중 가이드 -->
+        <section id="age-section">
+            <h2>나이에 따라 천차만별인 K3 보험료 비교</h2>
+            <p>자동차보험 요율에서 가장 큰 비중을 차지하는 부분은 바로 운전자의 연령입니다. 기아 K3의 경우 20대 초반 사회초년생부터 30대, 40대 가장의 주행 목적 차량까지 분포가 고르기 때문에 나이 구간에 따른 평균 가격의 편차가 매우 가파르게 나타납니다.</p>
+            
+            <h3>20대 초반 (만 21세 ~ 만 24세)</h3>
+            <p>면허를 갓 취득하고 신규 가입을 진행하는 만 21세 전후의 경우, 통계적으로 사고율이 높은 집단으로 분류되어 기본 요율이 매우 불리하게 세팅됩니다. K3 스마트스트림 G1.6 신형 연식을 자차 포함하여 최초 가입할 때 예상되는 금액은 대략 연간 180만원에서 최고 260만원에 달하는 무거운 견적을 받기 일쑤입니다. 이때 장점은 만 24세를 분기점으로 비용 하강 곡선이 시작된다는 점이며, 단점은 자차를 추가할 시 첫 보험비 부담이 상당하다는 것입니다.</p>
+
+            <h3>20대 후반 (만 26세 ~ 만 29세)</h3>
+            <p>군필 할인이나 운전경력 1~2년이 쌓이고 연령 한정이 만 26세 특약에 도달하게 되면 K3 보험료는 아주 눈에 띄게 큰 하락 폭을 그립니다. 대개 이 시기부터 본격적으로 연간 평균 보험료가 90만원에서 130만원 범위로 수렴하게 됩니다. 만 26세를 넘어가면서 많은 보험 전문 업체들이 신규 고객을 유치하기 위해 다양한 사은품이나 현금지원 혜택을 제공하므로, 적극적인 다이렉트 추천 순위 비교가 절실해집니다.</p>
+
+            <h3>30대 및 40대 이상</h3>
+            <p>운전 경력이 탄탄하게 누적되어 무사고 기간이 길어진 30대와 40대는 가장 안전하고 저렴하게 가입할 수 있는 황금 연령층입니다. 대인, 대물 한도를 최대치로 넓히고 자차 요율을 정상적으로 대입하더라도 평균 연간 50만원에서 85만원 수준으로 무리 없이 가입이 성사됩니다. 부부 한정이나 가족 한정 특약을 잘 세팅한다면 패밀리카 대용으로서도 훌륭한 가격 경쟁력을 유지할 수 있습니다.</p>
+
+            <div class="table-container">
+                <table>
+                    <caption>연령대별 K3 평균 자동차 보험료 비교표</caption>
+                    <thead>
+                        <tr>
+                            <th>연령대 구분</th>
+                            <th>운전 경력</th>
+                            <th>자차 가입 여부</th>
+                            <th>연간 예상 평균 가격</th>
+                            <th>주요 특이사항 및 의견</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>만 21세 이하 신규</td>
+                            <td>없음 (신규)</td>
+                            <td>포함 (종합보험)</td>
+                            <td>1,900,000원 ~ 2,700,000원</td>
+                            <td>부모님 밑으로 1인 추가 가입이 훨씬 합리적</td>
+                        </tr>
+                        <tr>
+                            <td>만 24세 이상 26세 미만</td>
+                            <td>1년 미만</td>
+                            <td>포함 (종합보험)</td>
+                            <td>1,300,000원 ~ 1,800,000원</td>
+                            <td>티맵 안전운전 점수 및 마일리지 필수 연동 구간</td>
+                        </tr>
+                        <tr>
+                            <td>만 26세 이상 30세 미만</td>
+                            <td>2년 이상</td>
+                            <td>포함 (종합보험)</td>
+                            <td>850,000원 ~ 1,200,000원</td>
+                            <td>다이렉트 경쟁이 가장 치열한 핵심 저렴한곳 탐색 시기</td>
+                        </tr>
+                        <tr>
+                            <td>만 30세 이상 안정권</td>
+                            <td>3년 이상 무사고</td>
+                            <td>포함 (종합보험)</td>
+                            <td>480,000원 ~ 750,000원</td>
+                            <td>안전 장치 추가 장착으로 최저 할인 극대화 가능</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 세부 모델별 분석 섹션 -->
+        <section id="model-section">
+            <h2>K3 세부 모델 및 연식별 요율 특징과 차이점</h2>
+            <p>기아 K3는 약 15년에 걸친 제품 생애 주기 동안 무수히 많은 모델이 생산되었습니다. K3 1.6 가솔린 모델을 포함하여 엔진 종류 및 차량 내부 구조에 따른 보험 등급의 차이점을 파악하면 현명하게 차량을 관리할 수 있습니다.</p>
+            
+            <p>예를 들어 고성능 사양인 <strong>K3 GT 4도어</strong>와 <strong>K3 GT 5도어</strong>는 준중형 스포츠백으로 평가되어 스포티한 주행 성능을 만끽할 수 있다는 명확한 장점이 있지만, 보험 측면에서는 스포츠 요율이나 고성능 특수 할증이 간접적으로 추가될 수 있어 자차 비용이 20% 이상 고가로 청구됩니다. 반면 실용성을 전면에 세운 K3 LPI(가스) 렌터카형이나 장애인용 가스차 모델의 경우 기본 트랙 레코드가 완만하여 유지비뿐만 아니라 보험료 역시 비교적 싼곳이 많이 나타납니다.</p>
+
+            <div class="table-container">
+                <table>
+                    <caption>K3 주요 세부 모델 목록 및 예상 보험료 요율 지표</caption>
+                    <thead>
+                        <tr>
+                            <th>K3 세부 모델명</th>
+                            <th>엔진 및 변속기 사양</th>
+                            <th>주요 연식</th>
+                            <th>자차 등급 민감도</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>K3 1세대 1.6 가솔린</td>
+                            <td>1.6 GDI 자동/수동</td>
+                            <td>2012년형 ~ 2015년형</td>
+                            <td>매우 낮음 (차량 가액 감가 반영)</td>
+                        </tr>
+                        <tr>
+                            <td>K3 1.6 디젤 트렌디</td>
+                            <td>1.6 VGT 디젤</td>
+                            <td>2013년형 ~ 2016년형</td>
+                            <td>보통 (연비는 우수하나 소모품 연계)</td>
+                        </tr>
+                        <tr>
+                            <td>더 뉴 K3 1세대 프레스티지</td>
+                            <td>1.6 GDI 가솔린</td>
+                            <td>2015년형 ~ 2018년형</td>
+                            <td>낮음 (대중적 부품 공급 원활)</td>
+                        </tr>
+                        <tr>
+                            <td>K3 쿱 1.6 T-GDI 터보</td>
+                            <td>1.6 터보 수동/DCT</td>
+                            <td>2013년형 ~ 2017년형</td>
+                            <td>높음 (스포츠 성향에 따른 할증 우려)</td>
+                        </tr>
+                        <tr>
+                            <td>올 뉴 K3 스마트스트림 G1.6</td>
+                            <td>IVT 무단변속기 세팅</td>
+                            <td>2018년형 ~ 2021년형</td>
+                            <td>안정적 (무난한 주행 패턴 기록)</td>
+                        </tr>
+                        <tr>
+                            <td>더 뉴 K3 2세대 시그니처</td>
+                            <td>스마트스트림 가솔린 1.6</td>
+                            <td>2021년형 ~ 2024년형</td>
+                            <td>보통 (안전 장치 풍부하여 상쇄)</td>
+                        </tr>
+                        <tr>
+                            <td>K3 GT 5도어 스포츠</td>
+                            <td>1.6 T-GDI 가솔린 터보</td>
+                            <td>2019년형 ~ 2023년형</td>
+                            <td>매우 높음 (부품 단가 및 주행성향 영향)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <p>신규 가입을 준비 중이거나 중고로 기아 K3 쿱 1.6 가솔린 사양이나 구형 수동 모델을 인수하여 타시는 분들의 내돈내산 평가를 종합하면, 연식이 제법 된 K3 1세대 스마트스마트 이전 세대들은 차량 잔존가치가 낮아져서 자차 비용 자체는 적지만 연식에 따른 잔여 고장 리스크와 특약 제한이 다소 수반되므로 장단점을 명확히 따지고 가입을 진행해야 합니다.</p>
+        </section>
+
+        <!-- 할인 특약 섹션 -->
+        <section id="discount-section">
+            <h2>보험료를 절감하는 최고의 무기: 다이렉트 할인 특약 설계</h2>
+            <p>보험료가 산출될 때 우리가 통제할 수 없는 유일한 것이 바로 나이와 경력이라면, 우리가 직접 세팅하여 극적인 할인을 이끌어낼 수 있는 돌파구는 오직 특약에 있습니다. 대다수의 전문 손해보험사들은 스마트폰 앱 연동을 통한 최첨단 할인 정책을 내세우고 있습니다.</p>
+
+            <ul class="clean-list">
+                <li>티맵 및 네비게이션 안전운전 특약: 80점 이상의 점수를 상시 유지하는 조건으로 가입하면 평균 10%에서 15% 수준의 대폭적인 디스카운트 혜택을 선사합니다.</li>
+                <li>연간 주행거리 마일리지 할인: 연간 총 운행 주행거리가 10,000km 이내, 나아가 3,000km 이하로 대폭 적어질 경우에는 환급금 형태로 최대 30% 내외의 지출액을 되돌려줍니다.</li>
+                <li>대중교통 이용 특약 및 무사고 경력 우대: 직전 3년간 사고가 한 번도 발생하지 않았다면 자동으로 기본 가입 비용 자체가 한 단계 다운그레이드되어 적용됩니다.</li>
+                <li>첨단 안전장치 장착 특약: 차선 이탈 방지 보조 장치나 전방 충돌 방지 시스템이 빌트인으로 매립된 최신 더 뉴 K3 시그니처 트림 등의 경우에는 추가로 요율 감면 혜택이 주어집니다.</li>
+            </ul>
+
+            <p>최근에는 구글이나 네이버 같은 포털에서의 적극적인 견적 비교 검색뿐만 아니라, 메타인지 관점에서 챗지피티(ChatGPT)나 구글의 제미나이(Gemini) 같은 지능형 AI 에이전트 시스템에 개인 맞춤 조건 조언을 물어보고 자신의 성향에 가장 잘 부합하는 다이렉트 업체의 세부 특약을 확인하는 스마트 운전자들이 기하급수적으로 늘고 있는 추세입니다.</p>
+        </section>
+
+        <!-- 커뮤니티 의견 및 내돈내산 분석 -->
+        <section id="community-section">
+            <h2>보배드림, 디시, 펨코 오너들의 생생한 내돈내산 가입 후기</h2>
+            <p>실제 유저들의 경험담만큼 가치 있고 직관적인 정보는 드뭅니다. 보배드림 자유게시판 및 에펨코리아(펨코), 디시인사이드 자동차 갤러리 등의 각종 온라인 커뮤니티에 업로드된 내돈내산 실제 후기 데이터들을 객관적으로 분석해 보았습니다.</p>
+
+            <p>보배드림 오너들의 주된 의견에 따르면, "20대 신규 운전자가 무턱대고 종합 보험을 자기 명의 단독으로 넣으면 200만원은 기본으로 깨진다"며, "부모님 명의의 패밀리 지정 1인 특약으로 시작하여 경력을 야무지게 인정받아 3년 뒤 독립하는 것이 최선의 솔루션이자 가장 싼곳으로 가입하는 치트키"라고 입을 모읍니다.</p>
+
+            <p>디시인사이드와 펨코 사용자들 역시 "단순 가입 시 주는 네이버페이 포인트 사은품이나 일시적인 현금지원금, 문화 상품권 같은 이벤트 리워드 혜택에 눈이 멀기보다 다이렉트 가입 기본 원가 자체가 매력적이고 사고 접수 처리가 신속한 전문 브랜드를 골라 가입하는 순위 비교가 나중에 큰 사고 시 정신건강에 이롭다"고 충고합니다. 더불어 가입 시 소셜 네트워크 채널인 유튜브, 인스타그램, 페이스북, 트위터 상에서 화제가 되고 있는 주요 손보사들의 갱신 만족도를 사전에 가늠해보는 것도 현명한 접근법입니다.</p>
+        </section>
+
+        <!-- 자주 묻는 질문 FAQ -->
+        <section id="faq-section">
+            <h2>K3 보험료 관련 자주 묻는 질문 (FAQ)</h2>
+            
+            <h3>Q1. 기아 K3 첫차 구입 예정인데, 부모님 밑으로 들어가는 것과 단독 가입의 비용 차이점은 어느 정도인가요?</h3>
+            <p>동일한 연식의 올 뉴 K3 모델 기준으로 만 22세 군필 남성이 본인 단독 명의로 신규 가입을 진행 시 자차 포함 평균 약 190만원이 도출되지만, 부모님 명의의 가입 차량에 운전자 1인 추가(가족 한정 및 지정 1인 부부 특약 혼합) 방식으로 지정하면 연간 약 90만원 선으로 마무리 지을 수 있습니다. 무려 두 배 이상인 100만원 가까운 연간 고정비 보전 효과가 발생하므로 첫 가입자는 경력 쌓기를 병행하여 공동 명의 전략을 선택하는 방법을 추천합니다.</p>
+
+            <h3>Q2. 2026년 들어 다이렉트 자동차보험료 결제 혜택이나 현금 사은품 지원 규모는 어떻게 변했나요?</h3>
+            <p>금융 감독 당국의 불공정 거래 예방 및 과당경쟁 방지 가이드라인에 근거하여 무분별한 과다 현금지원이나 상품권 살포 이벤트는 다소 안정화되었습니다. 하지만 대다수의 메이저 다이렉트 브랜드들은 여전히 신규 제휴 카드 결제 청구할인, 카카오페이 및 네이버페이 포인트 환급 등의 간접 이벤트를 지속 운영하고 있으므로 각 사 통합 다이렉트 센터 앱에서 프로모션 상세 조건을 꼼꼼하게 실시간 체크해 보시길 권장해 드립니다.</p>
+
+            <h3>Q3. K3 수동 모델이나 디젤 모델이 일반 가솔린 세단형 모델보다 보험 산정 시 특별히 불리한 점이 있나요?</h3>
+            <p>수동 변속기 장착 차량이라고 해서 특별한 불이익이나 패널티성 할증이 부여되는 일은 전혀 없습니다. 다만 중고 시장에서 거래되는 1세대 K3 디젤 모델의 경우 일반 스마트스트림 가솔린 엔진 차량 대비 차량의 연간 평균 주행량이 원래 많을 것이라는 손해율 가중치가 통계학적으로 조금 반영되어 있을 수 있으며, 자차 담보 가액 산정 시 부품 단가 등의 세세한 편차로 인한 몇 만원의 오차는 존재할 수 있습니다.</p>
+        </section>
+
+        <!-- 연관 검색 키워드 클라우드 -->
+        <section id="keywords-cloud-section">
+            <h2>함께 많이 찾는 카테고리 및 관련 키워드</h2>
+            <p>아래 카테고리는 사용자들이 네이버 검색, 구글링, 최신 AI 검색 모델링을 구동할 때 동반하여 질의하는 높은 연관도를 자랑하는 용어군입니다. 흐름 속에서 지속적인 연계 파악을 해보시기 바랍니다.</p>
+            <div class="keyword-cloud">
+                <span>K3 보험료 평균</span>
+                <span>K3 자동차세</span>
+                <span>사회초년생 준중형 첫차</span>
+                <span>K3 유지비 비교</span>
+                <span>다이렉트 자동차보험 추천</span>
+                <span>자차 보험 빼면</span>
+                <span>만 26세 자동차보험료</span>
+                <span>티맵 안전점수 올리기</span>
+                <span>K3 중고 시세</span>
+                <span>대물 배상 한도 설정</span>
+                <span>부모님 동의 공동명의</span>
+                <span>수입차 대물사고 대처법</span>
+                <span>기아 셀토스 보험료 비교</span>
+                <span>아반떼 CN7 보험료 차이</span>
+            </div>
+        </section>
+
+        <!-- 공인 신뢰성 외부 링크 -->
+        <section id="authority-links">
+            <h2>공인된 신뢰할 수 있는 외부 정보 사이트</h2>
+            <p>정확하고 올바른 제도적 지원을 얻기 위해 정부 및 유관 기관에서 정식 운영하는 신뢰도 높은 공적 리소스를 제공합니다. 보험 가입 및 정책 검토 시 직접 방문하시어 유익한 가이드를 확보하시길 바랍니다.</p>
+            <div class="external-links">
+                <a href="https://e-insumarket.or.kr" class="ext-btn" target="_blank" rel="noopener noreferrer">보험다모아 다이렉트 공식 비교</a>
+                <a href="https://www.fss.or.kr" class="ext-btn" target="_blank" rel="noopener noreferrer">금융감독원 소비자 정보 포털</a>
+                <a href="https://www.safedriving.or.kr" class="ext-btn" target="_blank" rel="noopener noreferrer">도로교통공단 안전운전 통합민원</a>
+                <a href="https://namu.wiki/w/%EA%B8%B0%EC%95%84%20K3" class="ext-btn" target="_blank" rel="noopener noreferrer">나무위키 기아 K3 상세 개요</a>
+                <a href="https://www.ecar.go.kr" class="ext-btn" target="_blank" rel="noopener noreferrer">국토교통부 자동차민원 대국민포털</a>
+            </div>
+        </section>
     </main>
-  </body>
-</html>
+
+    <!-- 실시간 견적 모의 계산 연산 스크립트 (체류 시간 확보 장치) -->
+    <script>
+        function calculateK3Premium() {
+            const basePremium = 1200000; // 기초 금액
+            
+            const modelFactor = parseFloat(document.getElementById('car-model').value);
+            const ageFactor = parseFloat(document.getElementById('driver-age').value);
+            const expFactor = parseFloat(document.getElementById('experience').value);
+            
+            let finalPremium = basePremium * modelFactor * ageFactor * expFactor;
+            
+            // 특약 체크박스 처리
+            if (document.getElementById('tmap').checked) {
+                finalPremium *= parseFloat(document.getElementById('tmap').value);
+            }
+            if (document.getElementById('blackbox').checked) {
+                finalPremium *= parseFloat(document.getElementById('blackbox').value);
+            }
+            if (document.getElementById('mileage').checked) {
+                finalPremium *= parseFloat(document.getElementById('mileage').value);
+            }
+            if (document.getElementById('children').checked) {
+                finalPremium *= parseFloat(document.getElementById('children').value);
+            }
+            
+            const formattedResult = Math.round(finalPremium).toLocaleString('ko-KR') + "원";
+            
+            // 결과창 표시 및 스크롤 고정
+            const resultBox = document.getElementById('calc-result');
+            resultBox.style.display = 'block';
+            document.getElementById('premium-display').innerText = formattedResult;
+            
+            // 시각 효과 가미를 위해 부드러운 전환 처리
+            resultBox.style.opacity = 0;
+            let opacityVal = 0;
+            const timer = setInterval(function() {
+                if (opacityVal >= 1) {
+                    clearInterval(timer);
+                }
+                resultBox.style.opacity = opacityVal;
+                opacityVal += 0.1;
+            }, 30);
+        }
+    </script>
+  
